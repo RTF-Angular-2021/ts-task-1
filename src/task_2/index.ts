@@ -26,7 +26,7 @@ type ThirdType = {
     prop2: boolean
     prop3: System
 }
- 
+
 const obj1: FirstType = {
     prop1: "Привет, РТФ!",
     prop2: false,
@@ -71,7 +71,15 @@ const obj7: ThirdType = {
 const array = [obj1, obj2, obj3, obj4, obj5, obj6, obj7];
 
 function filter<T>(anyObjectArray: Array<FirstType | SecondType | ThirdType>) {
-    
+    let res: T[] = [];
+    for(let i = 0; i < anyObjectArray.length; i++){
+        let obj: any = anyObjectArray[i];
+        let type: typeof obj[] = [];
+        if(typeof type === typeof res) {
+            res.push(obj);
+        }
+    }
+    return res;
 }
 
 filter<FirstType>(array);

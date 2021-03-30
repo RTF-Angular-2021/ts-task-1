@@ -61,6 +61,7 @@ export const persons: Person[] = [
 
 export const isAdmin = (person: Person): person is Admin => person.type === 'admin';
 export const isUser = (person: Person): person is User => person.type === 'user';
+const getKeyValue = <T extends object, U extends keyof T>(key: U) => (obj: T) => obj[key];
 
 export function logPerson(person: Person) {
     let additionalInformation = '';
@@ -73,18 +74,20 @@ export function logPerson(person: Person) {
     console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
 }
 
-export function filterUsers(persons: Person[], criteria: User): User[] {
-    return persons.filter(isUser).filter((user) => {
+
+
+export function filterUsers<T extends Object>(persons1: Person[], criteria: T): User[] {
+    return persons1.filter(isUser).filter((user) => {
         const criteriaKeys = Object.keys(criteria);
         return criteriaKeys.every((fieldName) => {
-            return user[fieldName] === criteria[fieldName];
+            return getKeyValue<User, any>(fieldName)(user) === getKeyValue<Object, any>(fieldName)(criteria);
         });
     });
 }
 
 console.log('Users of age 23:');
 
-filterUsers(
+filterUsers<{}>(
     persons,
     {
         age: 23

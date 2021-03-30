@@ -20,5 +20,7 @@
   "dependencies": {
     "tsc": "^1.20150623.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
 }
