@@ -71,9 +71,27 @@ const obj7: ThirdType = {
 const array = [obj1, obj2, obj3, obj4, obj5, obj6, obj7];
 
 function filter<T>(anyObjectArray: Array<FirstType | SecondType | ThirdType>) {
-    
+    let t: T;
+    return anyObjectArray.filter(e => areSameType(t, e));
 }
+
+function areSameType(t1: any, t2: any): boolean {
+    for (const f1 in t1) {
+        if (!Object.prototype.hasOwnProperty.call(t2, f1))
+            return false;
+    }
+
+    for (const f2 in t2) {
+        if (!Object.prototype.hasOwnProperty.call(t1, f2))
+            return false;
+    }
+
+    return true;
+}
+
+
 
 filter<FirstType>(array);
 filter<SecondType>(array);
 filter<ThirdType>(array);
+
