@@ -71,6 +71,14 @@ const obj7: ThirdType = {
 const array = [obj1, obj2, obj3, obj4, obj5, obj6, obj7];
 
 function filter(array: Array<FirstType | SecondType | ThirdType>, type: string) {
+    let newArray = [];
+    for (let obj of array){
+        if (typeof obj === type){
+            newArray.push(obj);
+        }
+    }
+
+    return newArray;
 }
 
 filter(array, 'FirstType');
