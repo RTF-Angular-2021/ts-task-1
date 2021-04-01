@@ -70,10 +70,10 @@ const obj7: ThirdType = {
 
 const array = [obj1, obj2, obj3, obj4, obj5, obj6, obj7];
 
-function filter<T>(anyObjectArray: Array<FirstType | SecondType | ThirdType>) {
-    
+function filter(array: Array<FirstType | SecondType | ThirdType>, type: string) {
+    return array.filter((x): x is FirstType | SecondType | ThirdType => typeof x === type);
 }
 
-filter<FirstType>(array);
-filter<SecondType>(array);
-filter<ThirdType>(array);
+filter(array, 'FirstType' );
+filter(array, 'SecondType');
+filter(array, 'ThirdType');
