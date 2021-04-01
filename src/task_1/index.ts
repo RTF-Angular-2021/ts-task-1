@@ -1,10 +1,13 @@
-  /** Задача 1
- * Требуется описать типы FooType и BarType так, чтобы код,
- * который написан в функции logObj компилировался и исполнялся корректно
-*/
-
-type FooType = unknown;
-type BarType = unknown;
+type FooType = {
+    stringProp: string,
+    numberProp: number,
+    barObject: BarType,
+};
+type BarType = {
+    stringsArrayProp: string[],
+    numbersOrDatesArrayProp: Array<number | Date>,
+    functionProp: Function
+};
 
 export const fooObjects: FooType[] = [
     {

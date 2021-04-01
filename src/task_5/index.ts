@@ -1,14 +1,15 @@
-/** Задача 4
- * Измените объявление функции filterUsers так, чтобы
- * в аргумент criteria можно было передавать объект,
- * содержащий любое поле или поля объекта User
-*/
-
 interface User {
     type: string;
     name: string;
     age: number;
     occupation: string;
+}
+
+interface HybridUser {
+    type?: string;
+    name?: string;
+    age?: number;
+    occupation?: string;
 }
 
 interface Admin {
@@ -73,7 +74,7 @@ export function logPerson(person: Person) {
     console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
 }
 
-export function filterUsers(persons: Person[], criteria: User): User[] {
+export function filterUsers(persons: Person[], criteria: HybridUser): User[] {
     return persons.filter(isUser).filter((user) => {
         const criteriaKeys = Object.keys(criteria);
         return criteriaKeys.every((fieldName) => {
