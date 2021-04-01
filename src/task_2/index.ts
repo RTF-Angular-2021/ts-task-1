@@ -1,10 +1,3 @@
-/** Задача 2
- * Требуется реализовать функцию filter, которая будет принимать
- * массив с объектами 3х типов
- * наименование типа
- * возврщать массив с объектами, которые имеют тип, указанный во втором аргументе
-*/
-
 enum System {
     Linux = 0,
     Window = 1,
@@ -71,6 +64,11 @@ const obj7: ThirdType = {
 const array = [obj1, obj2, obj3, obj4, obj5, obj6, obj7];
 
 function filter(array: Array<FirstType | SecondType | ThirdType>, type: string) {
+    let res: any[] = [];
+    array.forEach(item => {
+        if (typeof item === type) res.push(item)
+    });
+    return res;
 }
 
 filter(array, 'FirstType');
