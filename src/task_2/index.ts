@@ -1,30 +1,31 @@
 /** Задача 2
- * Требуется реализовать функцию filter, которая будет
- * принимать generic параметр - тип данных
- * аргумент - массив с объектами каких-то типов
- * возврщать массив с объектами, которые имеют тип, указанный в generic параметре
+ * Требуется реализовать функцию filter, которая будет принимать
+ * массив с объектами 3х типов
+ * наименование типа
+ * возврщать массив с объектами, которые имеют тип, указанный во втором аргументе
 */
 
-enum System {
+enum System 
+{
     Linux = 0,
     Window = 1,
-    MacOS = 2
+    MacOS = 2,
 }
 
 type FirstType = {
     prop1: string,
-    prop2: boolean
+    prop2: boolean,
 }
 
 type SecondType = {
     prop1: typeof undefined,
-    prop2: () => Date
+    prop2: () => Date,
 }
 
 type ThirdType = {
     prop1: string,
-    prop2: boolean
-    prop3: System
+    prop2: boolean,
+    prop3: System,
 }
  
 const obj1: FirstType = {
@@ -70,10 +71,28 @@ const obj7: ThirdType = {
 
 const array = [obj1, obj2, obj3, obj4, obj5, obj6, obj7];
 
-function filter<T>(anyObjectArray: Array<FirstType | SecondType | ThirdType>) {
+function filter(array: Array<FirstType | SecondType | ThirdType>, type: string) 
+{
+    let result: any[] = [];
+    array.forEach(item => 
+        {
+        if (typeof item.prop1 === 'string' && Object.keys(item).length === 2 && type === 'FirstType') 
+        {
+            result.push(item);
+        } 
+        else if (typeof item.prop1 === 'undefined' && Object.keys(item).length === 2 && type === 'SecondType')
+        {
+            result.push(item);
+        } 
+        else if (Object.keys(item).length === 3 && type === 'ThirdType') 
+        {
+            result.push(item);
+        }
+    });
     
+    return result;
 }
 
-filter<FirstType>(array);
-filter<SecondType>(array);
-filter<ThirdType>(array);
+filter(array, 'FirstType');
+filter(array, 'SecondType');
+filter(array, 'ThirdType');
