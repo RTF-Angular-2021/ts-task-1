@@ -2,7 +2,7 @@
  * Требуется реализовать функцию filter, которая будет
  * принимать generic параметр - тип данных
  * аргумент - массив с объектами каких-то типов
- * возврщать массив с объектами, которые имеют тип, указанный в generic параметре
+ * возвращать массив с объектами, которые имеют тип, указанный в generic параметре
 */
 
 enum System {
@@ -23,7 +23,7 @@ type SecondType = {
 
 type ThirdType = {
     prop1: string,
-    prop2: boolean
+    prop2: boolean,
     prop3: System
 }
  
@@ -71,7 +71,19 @@ const obj7: ThirdType = {
 const array = [obj1, obj2, obj3, obj4, obj5, obj6, obj7];
 
 function filter<T>(anyObjectArray: Array<FirstType | SecondType | ThirdType>) {
-    
+    return array.filter(item =>{
+        let size = Object.keys(item).length;
+        if (type === 'FirstType'){
+            return size === 2 && typeof item.prop2 === 'boolean';
+        }   
+        if (type === 'SecondType'){
+            return typeof item.prop2 === 'function';
+        }
+        if (type === 'ThirdType'){
+            return size === 3;
+        }
+        return false;
+    });
 }
 
 filter<FirstType>(array);

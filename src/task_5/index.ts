@@ -17,6 +17,12 @@ interface Admin {
     age: number;
     role: string;
 }
+interface UpgradedUser {
+    type?: string;
+    name?: string;
+    age?: number;
+    occupation?: string;
+}
 
 export type Person = User | Admin;
 
@@ -73,7 +79,7 @@ export function logPerson(person: Person) {
     console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
 }
 
-export function filterUsers(persons: Person[], criteria: User): User[] {
+export function filterUsers(persons: Person[], criteria: UpgradedUser): User[] {
     return persons.filter(isUser).filter((user) => {
         const criteriaKeys = Object.keys(criteria);
         return criteriaKeys.every((fieldName) => {
