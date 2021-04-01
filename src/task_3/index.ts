@@ -8,5 +8,13 @@
 function add(x: string, y: string): string;
 function add(x: number, y: number): number;
 
-add('20', '21'); //2021
-add(20, 21); //41
+function add<T extends number | string>(x: T, y: T): any {
+    let type: T;
+    if (typeof type === "number")
+        return (x as number) + (y as number);
+    else 
+        return (x as string) + (y as string);
+}
+
+console.log(add('20', '21')); //2021
+console.log(add(20, 21)); //41
