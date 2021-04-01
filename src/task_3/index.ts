@@ -8,5 +8,14 @@
 function add(x: string, y: string): string;
 function add(x: number, y: number): number;
 
+function add(x, y) {
+    if (typeof x === "number" && typeof y === "number") {
+        return Number(x + y);
+    }
+    if (typeof x === "string" && typeof y === "string") {
+        return (x + y).toString();
+    }
+}
+
 add('20', '21'); //2021
 add(20, 21); //41
