@@ -22,11 +22,11 @@ export type Person = User | Admin;
 
 export const persons: Person[] = [
     {
-		type: 'user',
-		name: 'Max Mustermann',
-		age: 25,
-		occupation: 'Chimney sweep'
-	},
+        type: 'user',
+        name: 'Max Mustermann',
+        age: 25,
+        occupation: 'Chimney sweep'
+    },
     {
         type: 'admin',
         name: 'Jane Doe',
@@ -73,7 +73,14 @@ export function logPerson(person: Person) {
     console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
 }
 
-export function filterUsers(persons: Person[], criteria: User): User[] {
+type Criteria = {
+    type?: string,
+    name?: string,
+    age?: number,
+    occupation?: string
+}
+
+export function filterUsers(persons: Person[], criteria: Criteria): User[] {
     return persons.filter(isUser).filter((user) => {
         const criteriaKeys = Object.keys(criteria);
         return criteriaKeys.every((fieldName) => {

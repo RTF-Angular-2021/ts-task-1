@@ -11,22 +11,22 @@ enum System {
     MacOS = 2,
 }
 
-type FirstType = {
+interface FirstType {
     prop1: string,
     prop2: boolean,
 }
 
-type SecondType = {
+interface SecondType {
     prop1: typeof undefined,
     prop2: () => Date,
 }
 
-type ThirdType = {
+interface ThirdType {
     prop1: string,
     prop2: boolean,
     prop3: System,
 }
- 
+
 const obj1: FirstType = {
     prop1: "Привет, РТФ!",
     prop2: false,
@@ -71,6 +71,22 @@ const obj7: ThirdType = {
 const array = [obj1, obj2, obj3, obj4, obj5, obj6, obj7];
 
 function filter(array: Array<FirstType | SecondType | ThirdType>, type: string) {
+    return array.filter(x => getType(x) === type);
+}
+
+function getType(element: FirstType | SecondType | ThirdType): string {
+    if (Object.keys(element).length === 3)
+        return "ThirdType";
+
+    if (Object.keys(element).length === 2) {
+        if (typeof element.prop1 === "string" && typeof element.prop2 === "boolean")
+            return "FirstType";
+
+        if (typeof element.prop1 === typeof undefined && typeof element.prop2 === "function")
+            return "SecondType";
+    }
+
+    return "";
 }
 
 filter(array, 'FirstType');
