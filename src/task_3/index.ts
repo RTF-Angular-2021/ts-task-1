@@ -8,8 +8,12 @@
 
 function add(x: number, y: number): number;
 function add(x: string, y: string): string;
-function add(x: any, y: any): any{
-    return x + y;
+function add(x: string | number, y: string | number): string | number{
+    if (typeof x === 'string' && typeof y === 'string')
+        return x + y;
+    else if (typeof x === 'number' && typeof y === 'number')
+        return x + y;
+    throw new Error();
 }
 
 add('20', '21'); //2021
