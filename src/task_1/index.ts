@@ -3,8 +3,8 @@
  * который написан в функции logObj компилировался и исполнялся корректно
 */
 
-type FooType = unknown;
-type BarType = unknown;
+type FooType = {stringProp: String, numberProp: Number, barObject: BarType};
+type BarType = {stringsArrayProp: Array<string>, numbersOrDatesArrayProp: Array<Date | number>, functionProp(flag: boolean): void};
 
 export const fooObjects: FooType[] = [
     {
