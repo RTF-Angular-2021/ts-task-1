@@ -5,8 +5,14 @@
  * использовать тип any для типизации параметров запрещено
  * функция должна возвращать сумму двух аргументов
 */
-function add(x: string, y: string): string;
-function add(x: number, y: number): number;
+function add(a, b) {
+    if (typeof a === "number" && typeof b === "number") {
+        return Number(a + b);
+    }
+    if (typeof a === "string" && typeof b === "string") {
+        return (a + b).toString();
+    }
+}
 
 add('20', '21'); //2021
 add(20, 21); //41

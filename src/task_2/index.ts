@@ -26,7 +26,7 @@ type ThirdType = {
     prop2: boolean,
     prop3: System,
 }
- 
+
 const obj1: FirstType = {
     prop1: "Привет, РТФ!",
     prop2: false,
@@ -70,7 +70,20 @@ const obj7: ThirdType = {
 
 const array = [obj1, obj2, obj3, obj4, obj5, obj6, obj7];
 
-function filter(array: Array<FirstType | SecondType | ThirdType>, type: string) {
+function searchType(obj: Object): string {
+    if (typeof obj.prop1 === 'string' && typeof obj.prop2 === 'boolean' && typeof obj.prop3 === 'number') {
+        return 'ThirdType'
+    };
+
+    if (typeof obj.prop1 === 'undefined' && typeof obj.prop2 === 'function') {
+        return 'SecondType'
+    };
+
+    return 'FirstType'
+}
+
+function filter(array: Array<FirstType | SecondType | ThirdType>, type: string): object[] {
+    return array.filter(element => searchType(element) === type)
 }
 
 filter(array, 'FirstType');
