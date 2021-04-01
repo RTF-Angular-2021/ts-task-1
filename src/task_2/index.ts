@@ -1,3 +1,4 @@
+
 /** Задача 2
  * Требуется реализовать функцию filter, которая будет принимать
  * массив с объектами 3х типов
@@ -71,6 +72,7 @@ const obj7: ThirdType = {
 const array = [obj1, obj2, obj3, obj4, obj5, obj6, obj7];
 
 function filter(array: Array<FirstType | SecondType | ThirdType>, type: string) {
+
 }
 
 filter(array, 'FirstType');
