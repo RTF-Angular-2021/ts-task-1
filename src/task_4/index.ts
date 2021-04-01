@@ -7,8 +7,32 @@ interface IFoo {
     a: number
     b: string
 }
+
+/* Пример interface:
+Только описывает 
+interface IVegetable {
+    name: string;
+    getCalories(): number;
+}
+Это конкретный класс
+class Tomato implements IVegetable {
+    name: string = 'Tomato';
+    getCalories() {
+       return 18;
+    }
+}
+*/
+//Интерфейс может быть назван в выражении extends или implement, но псевдоним типа для литерала типа объекта не может.
+//Интерфейс может иметь несколько объединенных объявлений, но псевдоним типа для литерала типа объекта не может.
  
 type FooType = {
     a: number
     b: string
 };
+
+/*
+Type - это лишь типизация какой-то переменной, как правило, нестандартной, Например, мы хотим определить тип, который будет описывать степень готовности стейков:
+type SteakRoast = 'medium' | 'rare' | 'welldone';
+Таким образом, мы можем присвоить переменной типа SteakRoast только эти предопределённые значения.
+*/
+
