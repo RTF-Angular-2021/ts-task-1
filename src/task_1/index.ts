@@ -11,7 +11,7 @@ type FooType = {
 
 type BarType = {
     stringsArrayProp: string[],
-    numbersOrDatesArrayProp: any[],
+    numbersOrDatesArrayProp: (Date | Number)[],
     functionProp: Function,
 };
 
