@@ -72,9 +72,12 @@ const array = [obj1, obj2, obj3, obj4, obj5, obj6, obj7];
 
 function filter(array1: Array<FirstType | SecondType | ThirdType>, type: string) {
     let res: any[] = [];
-    array1.forEach(value => {if(typeof value === type){res.push(value)}});
+    array1.forEach(value => {if(getType(value) === type){res.push(value)}});
     return res;
 }
+
+const getType = (item:FirstType | SecondType |ThirdType) => Object.keys(item).length === 3 ? "ThirdType"
+    : item.prop1 ? "FirstType" : "SecondType";
 
 filter(array, 'FirstType');
 filter(array, 'SecondType');
