@@ -1,10 +1,3 @@
-/** Задача 2
- * Требуется реализовать функцию filter, которая будет принимать
- * массив с объектами 3х типов
- * наименование типа
- * возврщать массив с объектами, которые имеют тип, указанный во втором аргументе
-*/
-
 enum System {
     Linux = 0,
     Window = 1,
@@ -26,7 +19,7 @@ type ThirdType = {
     prop2: boolean,
     prop3: System,
 }
- 
+
 const obj1: FirstType = {
     prop1: "Привет, РТФ!",
     prop2: false,
@@ -70,7 +63,38 @@ const obj7: ThirdType = {
 
 const array = [obj1, obj2, obj3, obj4, obj5, obj6, obj7];
 
+function isFirstType(obj : FirstType | SecondType | ThirdType) {
+    return typeof obj.prop2 === "boolean" && !("prop3" in obj);
+}
+
+function isSecondType(obj : FirstType | SecondType | ThirdType) {
+    return typeof obj.prop2 === "function";
+}
+
+function isThirdType(obj : FirstType | SecondType | ThirdType) {
+    return "prop3" in obj;
+}
+
 function filter(array: Array<FirstType | SecondType | ThirdType>, type: string) {
+    let res: Array<FirstType | SecondType | ThirdType> = [];
+    switch (type) {
+        case "FirstType":
+            array.forEach(x => {
+                if (isFirstType(x)) res.push(x);
+            });
+            break;
+        case "SecondType":
+            array.forEach(x => {
+                if (isSecondType(x)) res.push(x);
+            });
+            break;
+        case "ThirdType":
+            array.forEach(x => {
+                if (isThirdType(x)) res.push(x);
+            });
+            break;
+    }
+    return res;
 }
 
 filter(array, 'FirstType');
