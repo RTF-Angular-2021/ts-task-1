@@ -11,6 +11,8 @@ enum System {
     MacOS = 2,
 }
 
+type typeSystem = keyof typeof System;
+
 type FirstType = {
     prop1: string,
     prop2: boolean,
@@ -70,9 +72,31 @@ const obj7: ThirdType = {
 
 const array = [obj1, obj2, obj3, obj4, obj5, obj6, obj7];
 
-function filter(array: Array<FirstType | SecondType | ThirdType>, type: string) {
+type ArrayItem = FirstType | SecondType | ThirdType;
+
+function filter(array: ArrayItem[], type: 'FirstType' | 'SecondType' | 'ThirdType'): ArrayItem[] {
+    return array.filter(item => {
+        if (type === "ThirdType" && (typeof (item as ThirdType).prop3 === "number")) {
+            return item;
+        } else if (type === "SecondType" && (typeof (item as SecondType).prop2 !== "boolean")) {
+            return item;
+        } else if (type === "FirstType" && (typeof (item as FirstType).prop2 === "boolean" && lengthObject(item) === 2)) {
+            return item;
+        } else {
+            return false;
+        }
+    });
+}
+
+function lengthObject(item: object): number {
+    let length = 0;
+    for (let i in item) {
+        length++
+    }  
+    return length;
 }
 
 filter(array, 'FirstType');
 filter(array, 'SecondType');
 filter(array, 'ThirdType');
+
